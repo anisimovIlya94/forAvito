@@ -1,0 +1,1 @@
+export {GameAsyncPage as GamePage} from "./ui/GamePage.async"

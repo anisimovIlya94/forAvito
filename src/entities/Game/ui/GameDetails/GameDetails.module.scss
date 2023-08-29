@@ -1,0 +1,65 @@
+.GameDetails{
+    padding: 30px 200px 0 100px;
+    display: flex;
+    gap: 20px;
+    text-align: left;
+    justify-content: right;
+    // align-items:flex-start;
+    position: relative;
+}
+
+.gameInfo{
+    max-width: 700px;
+    // position: relative;
+    // right: 0;
+    // top: 0;
+    // content: "";
+    // display: flex;
+    // flex-direction: column;
+    // justify-content: right;
+    // align-items: end;
+}
+
+.gameImage{
+    margin-bottom: 10px;
+}
+
+.linkBtn{
+    text-decoration: none;
+    margin: 0 auto;
+    padding: 15px 147px;
+    display: inline-block;
+    color: #fff;
+    font-weight: 900;
+    background-color: #3a93ff;
+    white-space: nowrap;
+    border-radius: 5px;
+}
+
+.linkBtn:hover{
+    opacity: 0.8;
+}
+
+.gameName{
+    margin-bottom: 20px;
+}
+
+.carouselImage{
+    width: 100%;
+    height: 400px;
+}
+
+
+.carousel{
+    margin: 0 auto;
+    max-width: 100%;
+}
+.desc{
+    white-space: pre-line;
+}
+
+.fixed{
+    position: fixed;
+    top: 30px;
+    left: 200px;
+}
