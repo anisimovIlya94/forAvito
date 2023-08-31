@@ -1,5 +1,15 @@
 .MainFilters{
     text-align: left;
     display: flex;
+    flex-direction: row;
     gap: 15px;
+    justify-content: center;
+    margin-bottom: 20px;
+    align-items: center;
+}
+
+@media(max-width: 600px) {
+    .MainFilters{
+        flex-direction: column;
+    }
 }

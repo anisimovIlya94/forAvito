@@ -28,12 +28,14 @@ export const fetchGamesList = () => async (dispatch: Dispatch, getState: () => S
           'X-RapidAPI-Host': 'free-to-play-games-database.p.rapidapi.com'
         }
       };
-      
-    try {
+      dispatch(mainContentActions.setIsLoading(true))
+  try {
         const {data} = await axios.request(setOptions);
-        dispatch(mainContentActions.setData(data))
+    dispatch(mainContentActions.setData(data))
+    dispatch(mainContentActions.setIsLoading(false))
     } catch (error) {
         const err = String(error)
-        dispatch(mainContentActions.setError(err) )
+    dispatch(mainContentActions.setError(err))
+    dispatch(mainContentActions.setIsLoading(false))
     }
 }

@@ -16,11 +16,21 @@
     background-color: #3a93ff;
 }
 
+.flexWrapper, .releaseWrapper{
+    margin-top: 10px;
+}
+
 .flexWrapper{
     display: flex;
     justify-content: space-between;
-    align-items: center;
-    margin-top: 10px;
+}
+
+.releaseWrapper{
+    text-align: left;
+}
+
+.publisher{
+    text-align: right;
 }
 
 .cardFooter{
@@ -39,4 +49,5 @@
 
 .description{
     text-align: left;
+    margin-top: 10px;
 }

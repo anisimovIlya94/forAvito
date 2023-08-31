@@ -1,64 +1,58 @@
 import { MainFilters } from 'features/mainFilters';
 import cls from './MainContent.module.scss';
-
-import { useEffect, type PropsWithChildren } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { Col, Row } from 'antd';
-import { GameCard } from 'entities/GameCard';
+import { useEffect, type PropsWithChildren, useState, useCallback} from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchGamesList } from '../model/services/fetchGamesList';
-import { getGamesList } from '../model/selectors/mainContentSelectors';
+import { getCategory, getDataList, getIsLoading, getPlatform, getSort } from '../model/selectors/mainContentSelectors';
+import { MainGamesList } from 'features/mainGamesList';
+import { mainContentActions } from '../model/slice/mainContentSlice';
+import { PlatformField, SortField } from '../model/types/MainContentSchema';
+import { Page } from 'widgets/Page/ui/Page';
 
 interface MainContentProps {
     className?: string;
 }
 
 export function MainContent(props: PropsWithChildren<MainContentProps>) {
-    const { className } = props;
     const dispatch: any = useDispatch()
+
     useEffect(() => {
         dispatch(fetchGamesList())
     }, [])
-    const navigate = useNavigate()
-    const data = useSelector(getGamesList)
-    if (!data) {
-        return "Loading..."
-    }
-    const handleGoToGame = (id: number) => {
-        navigate(`/game/${id}`)
-    }
-    const handleChangeSort = (sort: string) => {
 
-    }
-    const handleChangePlatform = (platform: string) => {
+    const data = useSelector(getDataList)
+    const isLoading = useSelector(getIsLoading)
+    const platform = useSelector(getPlatform)
+    const sort = useSelector(getSort)
+    const category = useSelector(getCategory)
 
+    const handleChangeSort = (sort: SortField) => {
+        dispatch(mainContentActions.setSort(sort))
+        dispatch(fetchGamesList())
+    }
+    const handleChangePlatform = (platform: PlatformField) => {
+        dispatch(mainContentActions.setPlatform(platform))
+        dispatch(fetchGamesList())
     }
     const handleChangeCategory = (category: string) => {
-
+        dispatch(mainContentActions.setCategory(category))
+        dispatch(fetchGamesList())
     }
+
     return (
-        <div className={cls.MainContent}>
-            <MainFilters
-                    onChangeSortby={handleChangeSort}
-                    onChangePlatform={handleChangePlatform}
-                    onChangeCategory={handleChangeCategory}
-                    platform='all'
-                    sort='relevance'
-                    category='all'
+        // <Page onScroll={onLoadNext}>
+            <div className={cls.MainContent}>
+                <MainFilters
+                        onChangeSortby={handleChangeSort}
+                        onChangePlatform={handleChangePlatform}
+                        onChangeCategory={handleChangeCategory}
+                        platform ={platform}
+                        sort={sort}
+                        category={category}
                 />
-            <Row className={cls.rowUp} gutter={[16, 24]}>
-                {
-                    data.map((item) => {
-                        return (
-                            <div onClick={() => handleGoToGame(item.id)} key={item.id}>
-                                <Col className="gutter-row" span={6}>
-                                    <GameCard data={item} key={item.id} />
-                                </Col>
-                            </div>
-                            )
-                        })
-                }
-        </Row>
-</div>
- );
+                {data && <MainGamesList isLoading={isLoading} data={data} />}
+            </div>
+            
+        //  </Page>
+    );
 }

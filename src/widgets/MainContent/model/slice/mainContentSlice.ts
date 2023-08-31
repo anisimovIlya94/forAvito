@@ -14,9 +14,10 @@ const initialState: MainContentSchema = {
 	hasMore: true,
 	limit: 12,
 	category: "all",
-	sort: "release-date",
+	sort: "release - date",
     platform: "all",
-    data: null
+	data: [],
+	dataList: []
 }
   
 const mainContentSlice = createSlice({
@@ -32,19 +33,34 @@ const mainContentSlice = createSlice({
 		setPlatform: (state, action: PayloadAction<PlatformField>) => {
 			state.platform = action.payload
 		},
-		setHasMore: (state, action: PayloadAction<boolean>) => {
-			state.hasMore = action.payload
+		setIsLoading: (state, action: PayloadAction<boolean>) => {
+			state.isLoading = action.payload
         },
         setPage: (state) => {
+			
+			if (state.data && ((state.page + 1) * state.limit > state.data.length)) {
+				state.hasMore = false
+			}
 			state.page = state.page + 1
-        },
-        setData: (state, action: PayloadAction<GameCardTypes[]>) => {
-            state.data = action.payload
-            state.isLoading = false
+			// state.page = state.page + 1
+			// if (state.data && state.data?.length > state.limit) {
+			// 	state.dataList = state.data.slice(0, state.limit * state.page)
+			// } else {
+
+			// }
+			// state.dataList = (state.data && state.data?.length > state.limit) ? state.data.slice(0, state.limit * state.page) : state.data
+		},
+		setDataList: (state) => {
+			state.dataList = (state.data && state.hasMore && state.data?.length > state.limit) ? state.data.slice(0, state.limit * state.page) : state.data
+		},
+		setData: (state, action: PayloadAction<GameCardTypes[]>) => {
+			state.data = action.payload
+			state.dataList = action.payload.length > state.limit ? action.payload.slice(0, state.limit) : action.payload
+            // state.isLoading = false
         },
         setError: (state, action: PayloadAction<string>) => {
             state.error = action.payload
-            state.isLoading = false
+            // state.isLoading = false
         }
 	}
 })

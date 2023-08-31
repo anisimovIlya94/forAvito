@@ -8,7 +8,7 @@ const gameApi = rtkApi.injectEndpoints({
                 url: `/game`,
                 headers: {
                     'X-RapidAPI-Key': 'fd27cf3a59mshf640d6ca0cba13ep1101ebjsn10e07035b761',
-    'X-RapidAPI-Host': 'free-to-play-games-database.p.rapidapi.com'
+                    'X-RapidAPI-Host': 'free-to-play-games-database.p.rapidapi.com'
                 },
                 params: {
                     id,

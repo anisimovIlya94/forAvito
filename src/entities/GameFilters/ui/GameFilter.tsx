@@ -1,14 +1,15 @@
 import { Select } from 'antd';
 import { type PropsWithChildren } from 'react';
+import { PlatformField, SortField } from 'widgets/MainContent/model/types/MainContentSchema';
 
-interface GameFilterProps {
+interface GameFilterProps<T> {
     options: { label: string, value: string }[]
-    value: string
+    value: T
     name: string
-    onChange: (value: string) => void
+    onChange: (value: T) => void
 }
 
-export function GameFilter(props: PropsWithChildren<GameFilterProps>) {
+export function GameFilter<T>(props: PropsWithChildren<GameFilterProps<T>>) {
     const { options, value, onChange, name  } = props;
 
     return (

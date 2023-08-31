@@ -25,7 +25,7 @@ export function CustomRow(props: PropsWithChildren<RowProps>) {
                     <Col className="gutter-row" span={size}>
                         <div>
                             <p className={cls.colTitle}>{title}</p>
-                            <p>{sub}</p>
+                            <p className={cls.colText}>{sub}</p>
                         </div>
                     </Col>
                 )

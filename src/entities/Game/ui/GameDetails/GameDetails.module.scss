@@ -1,23 +1,16 @@
 .GameDetails{
-    padding: 30px 200px 0 100px;
+    padding: 30px;
     display: flex;
-    gap: 20px;
+    gap: 50px;
     text-align: left;
-    justify-content: right;
-    // align-items:flex-start;
-    position: relative;
+    max-width: 1200px;
+    flex-direction: row;
+    margin: 0 auto;
 }
 
 .gameInfo{
     max-width: 700px;
-    // position: relative;
-    // right: 0;
-    // top: 0;
-    // content: "";
-    // display: flex;
-    // flex-direction: column;
-    // justify-content: right;
-    // align-items: end;
+    padding-right: 30px;
 }
 
 .gameImage{
@@ -27,17 +20,21 @@
 .linkBtn{
     text-decoration: none;
     margin: 0 auto;
-    padding: 15px 147px;
+    padding: 15px 0px;
     display: inline-block;
     color: #fff;
     font-weight: 900;
     background-color: #3a93ff;
     white-space: nowrap;
     border-radius: 5px;
+    transition: all 0.5s ease;
+    width: 100%;
+    text-align: center;
 }
 
 .linkBtn:hover{
     opacity: 0.8;
+    transition: all 0.5s ease;
 }
 
 .gameName{
@@ -45,7 +42,7 @@
 }
 
 .carouselImage{
-    width: 100%;
+    max-width: 100%;
     height: 400px;
 }
 
@@ -58,8 +55,43 @@
     white-space: pre-line;
 }
 
+.fixedWrapper{
+    position: relative;
+    width: 365px;
+    padding-top: 10px;
+}
+
 .fixed{
-    position: fixed;
-    top: 30px;
-    left: 200px;
+    position: sticky;
+    top: 0;
+    left: 0;
+}
+.skeletonInfo{
+    width: 100%;
+}
+
+@media (max-width: 600px) {
+    .GameDetails{
+        flex-direction: column;
+        text-align: center;
+    }
+    .fixedWrapper{
+        position: static;
+        max-width: 100%;
+        
+    }
+    .fixed{
+        position: static;
+        max-width: 100%;
+        
+    }
+    .gameImage{
+        max-width: 100%;
+    }
+    .gameInfo{
+        padding-right: 0px;
+    }
+    .carouselImage{
+        height: 200px;
+    }
 }
