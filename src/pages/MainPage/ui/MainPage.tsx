@@ -1,9 +1,9 @@
 import { useDispatch } from "react-redux";
 import cls from "./MainPage.module.scss"
-import { MainContent } from 'widgets/MainContent/ui/MainContent';
-import { Page } from "widgets/Page/ui/Page";
+import { MainContent } from 'widgets/MainContent';
+import { Page } from "widgets/Page";
 import { useCallback } from "react";
-import { mainContentActions } from "widgets/MainContent/model/slice/mainContentSlice";
+import { mainContentActions } from "widgets/MainContent";
 
 function MainPage() {
     const dispatch: any = useDispatch()

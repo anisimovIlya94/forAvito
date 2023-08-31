@@ -3,10 +3,14 @@ import cls from './GameDetails.module.scss';
 import { Carousel } from 'antd';
 import { CustomRow } from 'shared/ui/Row/Row';
 import { ContentBlock } from 'shared/ui/ContentBlock/ContentBlock';
-import { useGame } from 'entities/Game/api/gameApi';
 import BackButton from 'shared/ui/BackButton/BackButton';
 import { AppImage } from 'shared/ui/AppImage/AppImage';
 import { Skeleton } from 'shared/ui/Skeleton';
+import { useCallback, useEffect } from 'react';
+import { fetchGame } from '../../model/service/fetchGame';
+import { useDispatch, useSelector } from 'react-redux';
+import { getGameData, getGameIsLoading } from '../../model/selectors/getGameSelectors';
+import { GameTypes } from '../../model/types/game';
     
 export enum AdditionalTitles{
     TITLE = "Title",
@@ -37,16 +41,30 @@ export interface AdditionalType {
 
 export function GameDetails() {
     const { id } = useParams<string>()
-    console.log(id)
     const sameId = id || "1"
-    const {
-        data,
-        isLoading
-    } = useGame(sameId)
+    const dispatch: any = useDispatch()
+    let storage = localStorage.getItem(sameId)
+    let storageData = storage && JSON.parse(storage).data as GameTypes
+    let storageTime = storage && (JSON.parse(storage).time)
 
-    // if (!data) {
-    //     return null
-    // }
+    const fetchingGame = useCallback(() => {
+        if (Date.now() - storageTime > 5000) {
+            dispatch(fetchGame(sameId)).then((i: GameTypes) => {
+                localStorage.setItem(String(i.id), JSON.stringify({data: i, time: Date.now()}))
+            })
+        }
+    },[dispatch])
+
+    useEffect(() => {
+        if (!storage || Date.now() - storageTime > 5000) {
+            fetchingGame()
+        }
+        console.log("effect")
+    }, [])
+    
+    const sliceData = useSelector(getGameData)
+    const isLoading = useSelector(getGameIsLoading)
+    const data = storageData ? storageData : sliceData
     
     const ruReleaseDate = data?.release_date.split("-").reverse().join(".")
     

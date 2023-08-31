@@ -2,7 +2,7 @@ import cls from './MainFilters.module.scss';
 import { type PropsWithChildren } from 'react';
 import { categoriesAndTags, platforms, sortBy } from '../consts/options';
 import { GameFilter } from 'entities/GameFilters';
-import { PlatformField, SortField } from 'widgets/MainContent/model/types/MainContentSchema';
+import { PlatformField, SortField } from 'widgets/MainContent';
 
 interface GameFiltersProps {
     platform: PlatformField

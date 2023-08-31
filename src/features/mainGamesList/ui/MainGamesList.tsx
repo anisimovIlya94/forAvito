@@ -1,4 +1,4 @@
-import { Card, Col, Row } from 'antd';
+import { Col, Row } from 'antd';
 import cls from './MainGamesList.module.scss';
 
 import type { PropsWithChildren } from 'react';
@@ -7,7 +7,6 @@ import { GameCardTypes } from 'entities/GameCard/model/types/gameCard';
 import { useNavigate } from 'react-router-dom';
 import { CustomCard } from 'shared/ui/Card/Card';
 import { Skeleton } from 'shared/ui/Skeleton';
-import { Page } from 'widgets/Page/ui/Page';
 
 interface MainGamesListProps {
     data?: GameCardTypes[]
@@ -59,15 +58,10 @@ export function MainGamesList(props: PropsWithChildren<MainGamesListProps>) {
             else {
                 content = (<h2>Ошибка при подгрузке списка игр. Попробуйте позже снова.</h2>)
             }
-    }
-    
+        }
     return (
-        // <Page onScroll={onScroll}>
             <Row className={cls.rowUp} gutter={[16, 24]}>
                 {content}            
             </Row>
-        // </Page>
-
-        
- );
+    );
 }

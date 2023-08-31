@@ -1,5 +1,4 @@
 import { MainContentSchema, PlatformField, SortField } from './../types/MainContentSchema';
-import { StateSchema } from "app/providers/StoreProvider"
 
 import {
 	createSlice,
@@ -42,13 +41,6 @@ const mainContentSlice = createSlice({
 				state.hasMore = false
 			}
 			state.page = state.page + 1
-			// state.page = state.page + 1
-			// if (state.data && state.data?.length > state.limit) {
-			// 	state.dataList = state.data.slice(0, state.limit * state.page)
-			// } else {
-
-			// }
-			// state.dataList = (state.data && state.data?.length > state.limit) ? state.data.slice(0, state.limit * state.page) : state.data
 		},
 		setDataList: (state) => {
 			state.dataList = (state.data && state.hasMore && state.data?.length > state.limit) ? state.data.slice(0, state.limit * state.page) : state.data
@@ -56,11 +48,9 @@ const mainContentSlice = createSlice({
 		setData: (state, action: PayloadAction<GameCardTypes[]>) => {
 			state.data = action.payload
 			state.dataList = action.payload.length > state.limit ? action.payload.slice(0, state.limit) : action.payload
-            // state.isLoading = false
         },
         setError: (state, action: PayloadAction<string>) => {
             state.error = action.payload
-            // state.isLoading = false
         }
 	}
 })

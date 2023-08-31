@@ -1,4 +1,4 @@
-import { GameCardTypes } from "entities/GameCard/model/types/gameCard"
+import { GameCardTypes } from "entities/GameCard"
 
 export interface MainContentSchema {
 	isLoading: boolean,

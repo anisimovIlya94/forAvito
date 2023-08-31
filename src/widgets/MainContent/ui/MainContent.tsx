@@ -1,19 +1,14 @@
 import { MainFilters } from 'features/mainFilters';
 import cls from './MainContent.module.scss';
-import { useEffect, type PropsWithChildren, useState, useCallback} from 'react';
+import { useEffect} from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchGamesList } from '../model/services/fetchGamesList';
 import { getCategory, getDataList, getIsLoading, getPlatform, getSort } from '../model/selectors/mainContentSelectors';
 import { MainGamesList } from 'features/mainGamesList';
 import { mainContentActions } from '../model/slice/mainContentSlice';
 import { PlatformField, SortField } from '../model/types/MainContentSchema';
-import { Page } from 'widgets/Page/ui/Page';
 
-interface MainContentProps {
-    className?: string;
-}
-
-export function MainContent(props: PropsWithChildren<MainContentProps>) {
+export function MainContent() {
     const dispatch: any = useDispatch()
 
     useEffect(() => {
@@ -40,7 +35,6 @@ export function MainContent(props: PropsWithChildren<MainContentProps>) {
     }
 
     return (
-        // <Page onScroll={onLoadNext}>
             <div className={cls.MainContent}>
                 <MainFilters
                         onChangeSortby={handleChangeSort}
@@ -52,7 +46,5 @@ export function MainContent(props: PropsWithChildren<MainContentProps>) {
                 />
                 {data && <MainGamesList isLoading={isLoading} data={data} />}
             </div>
-            
-        //  </Page>
     );
 }

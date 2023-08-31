@@ -1,8 +1,6 @@
 import { Card } from 'antd';
 import cls from './Card.module.scss';
-
 import type { PropsWithChildren, ReactNode } from 'react';
-import { useNavigate } from 'react-router-dom';
 import { Skeleton } from '../Skeleton';
 import { AppImage } from '../AppImage/AppImage';
 
@@ -31,11 +29,6 @@ export function CustomCard(props: PropsWithChildren<CardProps>) {
                             src={src}
                             fallback={<Skeleton border='5px' width={"100%"} height={140}/>}
                         />
-                    //     <img
-                    //         className={cls.image}
-                    //         alt="example"
-                    //         src={src}
-                    // />
                     }
                     </div>
             }

@@ -1,6 +1,5 @@
 import { Select } from 'antd';
 import { type PropsWithChildren } from 'react';
-import { PlatformField, SortField } from 'widgets/MainContent/model/types/MainContentSchema';
 
 interface GameFilterProps<T> {
     options: { label: string, value: string }[]

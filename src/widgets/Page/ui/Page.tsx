@@ -4,7 +4,6 @@ import cls from './Page.module.scss';
 import { useRef, type PropsWithChildren, type ReactNode, MutableRefObject } from 'react';
 
 interface PageProps{
-    // className?: string;
     children: ReactNode
     onScroll?: () => void
   }

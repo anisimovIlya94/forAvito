@@ -1,7 +1,6 @@
 import { Suspense } from 'react';
 import '../App.css';
 import { AppRouter } from './providers/router/ui/AppRouter';
-import { Spin } from 'antd';
 
 function App() {
   return (
