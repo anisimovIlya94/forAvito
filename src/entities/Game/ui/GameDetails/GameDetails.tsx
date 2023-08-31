@@ -48,15 +48,13 @@ export function GameDetails() {
     let storageTime = storage && (JSON.parse(storage).time)
 
     const fetchingGame = useCallback(() => {
-        if (Date.now() - storageTime > 5000) {
             dispatch(fetchGame(sameId)).then((i: GameTypes) => {
                 localStorage.setItem(String(i.id), JSON.stringify({data: i, time: Date.now()}))
             })
-        }
     },[dispatch])
 
     useEffect(() => {
-        if (!storage || Date.now() - storageTime > 5000) {
+        if (!storage || Date.now() - storageTime > (1000*60*5)) {
             fetchingGame()
         }
         console.log("effect")
